@@ -56,10 +56,17 @@ export default function Footer() {
             {/* Brand & Social Media Column */}
             <div className="md:col-span-6">
               <div className="flex items-center">
+                {/* Light Mode Logo */}
                 <img
                   src="/connectezelogo.png"
                   alt="Connecteze"
-                  className="h-10 w-auto object-contain mix-blend-multiply dark:brightness-0 dark:invert"
+                  className="h-12 w-auto object-contain dark:hidden"
+                />
+                {/* Dark Mode Logo */}
+                <img
+                  src="/WhiteConnectezelogo.png"
+                  alt="Connecteze"
+                  className="hidden h-12 w-auto object-contain dark:block"
                 />
               </div>
 
@@ -76,7 +83,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-[#DDE7E0] bg-white text-[#3F544A] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1FAF55] hover:bg-[#1FAF55] hover:text-white shadow-sm dark:border-[#223A2E] dark:bg-[#13231C] dark:text-[#9FB3A8] dark:hover:bg-[#1FAF55] dark:hover:text-white"
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-[#DDE7E0] bg-white text-[#3F544A] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1FAF55] hover:bg-[#1FAF55] hover:text-white dark:border-[#223A2E] dark:bg-[#13231C] dark:text-[#9FB3A8] dark:hover:bg-[#1FAF55] dark:hover:text-white"
                   >
                     <Icon size={16} />
                   </a>
@@ -96,7 +103,7 @@ export default function Footer() {
                     <button
                       type="button"
                       onClick={() => setActiveProduct("broadcast")}
-                      className="text-[13.5px] text-[#556960] hover:text-[#1FAF55] dark:text-[#8FA59A] dark:hover:text-[#4ADE80] transition-colors"
+                      className="text-[13.5px] text-[#556960] transition-colors hover:text-[#1FAF55] dark:text-[#8FA59A] dark:hover:text-[#4ADE80]"
                     >
                       WhatsApp Broadcast
                     </button>
@@ -105,7 +112,7 @@ export default function Footer() {
                     <button
                       type="button"
                       onClick={() => setActiveProduct("crm")}
-                      className="text-[13.5px] text-[#556960] hover:text-[#1FAF55] dark:text-[#8FA59A] dark:hover:text-[#4ADE80] transition-colors"
+                      className="text-[13.5px] text-[#556960] transition-colors hover:text-[#1FAF55] dark:text-[#8FA59A] dark:hover:text-[#4ADE80]"
                     >
                       CRM Campaigns
                     </button>
@@ -114,7 +121,7 @@ export default function Footer() {
                     <button
                       type="button"
                       onClick={() => setActiveProduct("templates")}
-                      className="text-[13.5px] text-[#556960] hover:text-[#1FAF55] dark:text-[#8FA59A] dark:hover:text-[#4ADE80] transition-colors"
+                      className="text-[13.5px] text-[#556960] transition-colors hover:text-[#1FAF55] dark:text-[#8FA59A] dark:hover:text-[#4ADE80]"
                     >
                       Ready Templates
                     </button>
@@ -123,7 +130,7 @@ export default function Footer() {
                     <button
                       type="button"
                       onClick={() => setActiveProduct("pricing")}
-                      className="text-[13.5px] text-[#556960] hover:text-[#1FAF55] dark:text-[#8FA59A] dark:hover:text-[#4ADE80] transition-colors"
+                      className="text-[13.5px] text-[#556960] transition-colors hover:text-[#1FAF55] dark:text-[#8FA59A] dark:hover:text-[#4ADE80]"
                     >
                       Pricing Plans
                     </button>
@@ -142,7 +149,7 @@ export default function Footer() {
                       href="https://spitel.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[13.5px] text-[#556960] hover:text-[#1FAF55] dark:text-[#8FA59A] dark:hover:text-[#4ADE80]"
+                      className="text-[13.5px] text-[#556960] transition-colors hover:text-[#1FAF55] dark:text-[#8FA59A] dark:hover:text-[#4ADE80]"
                     >
                       About Spitel
                     </a>
@@ -151,7 +158,7 @@ export default function Footer() {
                     <button
                       type="button"
                       onClick={() => setIsPrivacyOpen(true)}
-                      className="text-[13.5px] text-[#556960] hover:text-[#1FAF55] dark:text-[#8FA59A] dark:hover:text-[#4ADE80] transition-colors"
+                      className="text-[13.5px] text-[#556960] transition-colors hover:text-[#1FAF55] dark:text-[#8FA59A] dark:hover:text-[#4ADE80]"
                     >
                       Privacy Policy
                     </button>
@@ -160,7 +167,7 @@ export default function Footer() {
                     <button
                       type="button"
                       onClick={() => setIsTermsOpen(true)}
-                      className="text-[13.5px] text-[#556960] hover:text-[#1FAF55] dark:text-[#8FA59A] dark:hover:text-[#4ADE80] transition-colors"
+                      className="text-[13.5px] text-[#556960] transition-colors hover:text-[#1FAF55] dark:text-[#8FA59A] dark:hover:text-[#4ADE80]"
                     >
                       Terms of Service
                     </button>
@@ -169,7 +176,7 @@ export default function Footer() {
                     <button
                       type="button"
                       onClick={() => setIsContactOpen(true)}
-                      className="text-[13.5px] text-[#556960] hover:text-[#1FAF55] dark:text-[#8FA59A] dark:hover:text-[#4ADE80] transition-colors"
+                      className="text-[13.5px] text-[#556960] transition-colors hover:text-[#1FAF55] dark:text-[#8FA59A] dark:hover:text-[#4ADE80]"
                     >
                       Contact Us
                     </button>
@@ -182,7 +189,7 @@ export default function Footer() {
 
           {/* Bottom Bar */}
           <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-[#E4E8E1] pt-8 text-[13px] text-[#556960] dark:border-[#223A2E] dark:text-[#8FA59A] sm:flex-row">
-            <p>© 2026 Connecteze, ALL RIGHTS RESERVED.</p>
+            <p>© 2026 Connecteze, All Rights Reserved.</p>
 
             <p>
               Powered by{" "}
@@ -203,6 +210,7 @@ export default function Footer() {
       {/* Modals */}
       <PrivacyPolicyModal
         isOpen={isPrivacyOpen}
+        onClickClose={() => setIsPrivacyOpen(false)}
         onClose={() => setIsPrivacyOpen(false)}
       />
       <TermsOfServiceModal

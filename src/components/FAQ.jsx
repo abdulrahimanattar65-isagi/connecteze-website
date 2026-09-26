@@ -1,69 +1,104 @@
-import { useState } from "react";
-import { Plus } from "lucide-react";
+import React, { useState } from "react";
+import { ChevronDown, HelpCircle } from "lucide-react";
 
-const FAQS = [
+const FAQ_ITEMS = [
+ 
   {
-    q: "Is Connecteze free to get started?",
-    a: "Connecteze is not free to get started; pricing is based on a pay-as-you-go model at 1 paisa per message, or a flat monthly subscription of ₹2,000 for marketing and utility communication.",
+    question: "How does the pricing work for WhatsApp conversations?",
+    answer:
+      "Connecteze charges a flat platform subscription fee. WhatsApp conversation fees (marketing, utility, service) are determined by Meta's official country-based rate cards and deducted directly from your messaging balance without hidden markups.",
   },
   {
-    q: "Is my customer data secure?",
-    a: "All messages and form data are encrypted in transit and at rest, and you can export or delete your data at any time.",
+    question: "Can I import existing contacts from Excel or CRM?",
+    answer:
+      "Yes. You can import contacts via CSV or Excel files with custom attributes (such as first name, order ID, or city). We also offer instant webhooks and integrations with Shopify, WooCommerce, and standard CRMs.",
+  },
+{
+    question: "Can I use my existing WhatsApp phone number?",
+    answer:
+      "Yes. You can migrate an existing phone number to the official WhatsApp Business API, provided you first delete or unlink the number from your standard WhatsApp or WhatsApp Business mobile app so Meta can register it on Cloud API.",
   },
   {
-    q: "How long does setup take?",
-    a: "Most businesses connect their WhatsApp number and publish their first form in under fifteen minutes — no code needed.",
-  },
-  {
-    q: "Can I use my own WhatsApp Business number?",
-    a: "Yes, you can connect an existing WhatsApp Business number, or we can help you register a new one during onboarding.",
+    question: "How fast do bulk WhatsApp messages get delivered?",
+    answer:
+      "Messages are dispatched through Meta's high-throughput Cloud API servers in real time, delivering thousands of notifications and marketing broadcasts within seconds to minutes.",
   },
 ];
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(0);
 
-  return (
-    <section id="faq" className="w-full bg-[#E4ECEF] py-24 dark:bg-[#101A20]">
-      <div className="mx-auto max-w-3xl px-6">
-        <h2 className="font-display text-center text-3xl font-bold tracking-tight text-[#0E1F17] dark:text-[#EAF6EE] sm:text-4xl">
-          Questions, answered
-        </h2>
+  const toggleAccordion = (index) => {
+    setOpenIndex(openIndex === index ? -1 : index);
+  };
 
-        <div className="mt-10 divide-y divide-[#CCD7DC] border-t border-b border-[#CCD7DC] dark:divide-[#213540] dark:border-[#213540]">
-          {FAQS.map((item, i) => {
-            const isOpen = openIndex === i;
+  return (
+    <section
+      id="faq"
+      className="faq-section relative py-20 bg-[#FAF5EC] dark:bg-[#0B1512] transition-colors"
+    >
+      <div className="mx-auto max-w-4xl px-6">
+        
+        {/* Header */}
+        <div className="text-center mb-14">
+          
+          <h2 className="text-3xl font-extrabold tracking-tight text-[#0E1F17] dark:text-white sm:text-4xl">
+            Frequently Asked Questions
+          </h2>
+          <p className="mt-2 text-sm sm:text-base text-[#3F544A] dark:text-[#9FB3A8]">
+            Everything you need to know about Connecteze and the official WhatsApp Business API.
+          </p>
+        </div>
+
+        {/* Accordion List */}
+        <div className="space-y-3.5">
+          {FAQ_ITEMS.map((item, index) => {
+            const isOpen = openIndex === index;
+
             return (
-              <div key={item.q}>
+              <div
+                key={index}
+                className={`overflow-hidden rounded-2xl border transition-all duration-200 ${
+                  isOpen
+                    ? "border-[#25D366]/50 bg-white shadow-md dark:border-[#25D366]/40 dark:bg-[#13231C]"
+                    : "border-gray-200/80 bg-white/70 hover:border-gray-300 dark:border-white/10 dark:bg-[#13231C]/60 dark:hover:border-white/20"
+                }`}
+              >
+                {/* Question Trigger */}
                 <button
-                  className="flex w-full items-center justify-between gap-4 py-5 text-left"
-                  onClick={() => setOpenIndex(isOpen ? -1 : i)}
+                  type="button"
+                  onClick={() => toggleAccordion(index)}
+                  className="flex w-full items-center justify-between px-6 py-5 text-left transition-colors"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-[15.5px] font-semibold text-[#0E1F17] dark:text-[#EAF6EE]">
-                    {item.q}
+                  <span className="text-base font-semibold text-gray-900 dark:text-white sm:text-lg pr-4">
+                    {item.question}
                   </span>
-                  <Plus
-                    size={18}
-                    className={`shrink-0 text-[#1FAF55] transition-transform duration-300 ${
-                      isOpen ? "rotate-45" : ""
+                  
+                  <div
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-transform duration-200 ${
+                      isOpen
+                        ? "rotate-180 bg-[#25D366] text-white"
+                        : "bg-gray-100 text-gray-600 dark:bg-white/10 dark:text-gray-300"
                     }`}
-                  />
+                  >
+                    <ChevronDown size={18} />
+                  </div>
                 </button>
-                <div
-                  className="grid overflow-hidden transition-all duration-300 ease-out"
-                  style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
-                >
-                  <div className="overflow-hidden">
-                    <p className="pb-5 text-[14.5px] leading-relaxed text-[#3B4D53] dark:text-[#9FB3BC]">
-                      {item.a}
+
+                {/* Answer Content */}
+                {isOpen && (
+                  <div className="border-t border-gray-100 px-6 pb-6 pt-3 dark:border-white/5">
+                    <p className="text-sm leading-relaxed text-gray-600 dark:text-[#9FB3A8] sm:text-base">
+                      {item.answer}
                     </p>
                   </div>
-                </div>
+                )}
               </div>
             );
           })}
         </div>
+
       </div>
     </section>
   );

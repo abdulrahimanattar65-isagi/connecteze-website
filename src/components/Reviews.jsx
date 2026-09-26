@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const REVIEWS = [
@@ -32,40 +32,88 @@ const REVIEWS = [
   },
 ];
 
+// Structure: [ Clone(Last), Real(0), Real(1), Real(2), Real(3), Clone(First) ]
+const SLIDES = [
+  REVIEWS[REVIEWS.length - 1],
+  ...REVIEWS,
+  REVIEWS[0],
+];
+
 export default function Reviews() {
-  const [current, setCurrent] = useState(0);
+  // Start at index 1 (the first real review)
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const [hasTransition, setHasTransition] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
+  const isJumpingRef = useRef(false);
 
-  const total = REVIEWS.length;
-
-  const handleNext = useCallback(() => {
-    setCurrent((prev) => (prev + 1) % total);
-  }, [total]);
-
-  const handlePrev = useCallback(() => {
-    setCurrent((prev) => (prev - 1 + total) % total);
-  }, [total]);
-
-  // Auto-slide every 4 seconds without delay on initial mount
+  // Auto-slide forward every 3.5 seconds
   useEffect(() => {
     if (isPaused) return;
 
     const timer = setInterval(() => {
       handleNext();
-    }, 4000);
+    }, 3000);
 
     return () => clearInterval(timer);
-  }, [isPaused, handleNext]);
+  }, [isPaused, currentIndex]);
+
+  const handleNext = () => {
+    if (isJumpingRef.current) return;
+    setHasTransition(true);
+    setCurrentIndex((prev) => prev + 1);
+  };
+
+  const handlePrev = () => {
+    if (isJumpingRef.current) return;
+    setHasTransition(true);
+    setCurrentIndex((prev) => prev - 1);
+  };
+
+  // Called when the slide animation completes
+  const handleTransitionEnd = () => {
+    // If we just slid forward into the cloned first review (at the end)
+    if (currentIndex === SLIDES.length - 1) {
+      isJumpingRef.current = true;
+      // Instantly jump to the real first review without animation
+      setHasTransition(false);
+      setCurrentIndex(1);
+      // Re-enable transitions after paint
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          isJumpingRef.current = false;
+        });
+      });
+    }
+
+    // If we just slid backward into the cloned last review (at index 0)
+    if (currentIndex === 0) {
+      isJumpingRef.current = true;
+      setHasTransition(false);
+      setCurrentIndex(REVIEWS.length);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          isJumpingRef.current = false;
+        });
+      });
+    }
+  };
+
+  // Calculate active indicator index (0 to REVIEWS.length - 1)
+  let activeDot = currentIndex - 1;
+  if (currentIndex === 0) activeDot = REVIEWS.length - 1;
+  if (currentIndex === SLIDES.length - 1) activeDot = 0;
 
   return (
     <section
-      className="relative overflow-hidden bg-[#0A1610] py-20 text-white"
+      id="reviews"
+      className="reviews-section relative overflow-hidden bg-[#0A1610] py-20 text-white"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       <div className="mx-auto max-w-5xl px-6">
         <div className="relative flex items-center justify-between">
-          {/* Left Arrow */}
+          
+          {/* Left Arrow Button */}
           <button
             onClick={handlePrev}
             aria-label="Previous review"
@@ -78,12 +126,15 @@ export default function Reviews() {
           <div className="mx-4 w-full flex-1 overflow-hidden">
             {/* Sliding Track */}
             <div
-              className="flex transition-transform duration-500 ease-out"
+              className={`flex ${
+                hasTransition ? "transition-transform duration-600 ease-out" : ""
+              }`}
               style={{
-                transform: `translateX(-${current * 100}%)`,
+                transform: `translateX(-${currentIndex * 100}%)`,
               }}
+              onTransitionEnd={handleTransitionEnd}
             >
-              {REVIEWS.map((item, index) => (
+              {SLIDES.map((item, index) => (
                 <div
                   key={index}
                   className="w-full flex-[0_0_100%] px-4 flex flex-col items-center text-center"
@@ -100,7 +151,7 @@ export default function Reviews() {
                       <p className="text-[14px] font-bold text-white leading-tight">
                         {item.name}
                       </p>
-                      <p className="text-xs text-white/60">{item.role}</p>
+                      <p className="text-xs text-[#9FB3A8]">{item.role}</p>
                     </div>
                   </div>
                 </div>
@@ -108,7 +159,7 @@ export default function Reviews() {
             </div>
           </div>
 
-          {/* Right Arrow */}
+          {/* Right Arrow Button */}
           <button
             onClick={handleNext}
             aria-label="Next review"
@@ -123,10 +174,13 @@ export default function Reviews() {
           {REVIEWS.map((_, index) => (
             <button
               key={index}
-              onClick={() => setCurrent(index)}
+              onClick={() => {
+                setHasTransition(true);
+                setCurrentIndex(index + 1);
+              }}
               aria-label={`Go to review ${index + 1}`}
               className={`h-1.5 rounded-full transition-all duration-300 ${
-                current === index
+                activeDot === index
                   ? "w-8 bg-[#1FAF55]"
                   : "w-2 bg-white/20 hover:bg-white/40"
               }`}

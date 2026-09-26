@@ -15,9 +15,12 @@ function ChatMockup() {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setStep((s) => (s + 1) % (SCRIPT.length + 2));
-    }, step >= SCRIPT.length ? 1600 : 900);
+    const timer = setTimeout(
+      () => {
+        setStep((s) => (s + 1) % (SCRIPT.length + 2));
+      },
+      step >= SCRIPT.length ? 1600 : 900
+    );
     return () => clearTimeout(timer);
   }, [step]);
 
@@ -25,7 +28,7 @@ function ChatMockup() {
 
   return (
     <div className="relative mx-auto w-full max-w-[300px]">
-      {/* floating background card, echoes the layered-composition of the reference */}
+      {/* Floating background card */}
       <div className="float-slow absolute -left-10 top-6 hidden w-48 rounded-2xl border border-[#E4E8E1] bg-white p-4 shadow-xl shadow-[#0E1F17]/5 dark:border-[#223A2E] dark:bg-[#13231C] sm:block">
         <div className="mb-3 h-2 w-16 rounded-full bg-[#EAF7EE] dark:bg-[#1B2E24]" />
         <div className="mb-2 h-2 w-full rounded-full bg-[#F1F3EF] dark:bg-[#1B2E24]" />
@@ -36,7 +39,7 @@ function ChatMockup() {
         </div>
       </div>
 
-      {/* phone frame */}
+      {/* Phone frame */}
       <div className="relative rounded-[2.2rem] border-[6px] border-[#0E1F17] bg-[#0E1F17] shadow-2xl shadow-[#0E1F17]/20 dark:border-[#0B1512] dark:shadow-black/40">
         <div className="overflow-hidden rounded-[1.7rem] bg-[#E7F5EB]">
           <div className="flex items-center gap-2 bg-[#1FAF55] px-4 py-3">
@@ -52,7 +55,10 @@ function ChatMockup() {
           <div className="flex h-[340px] flex-col justify-end gap-2 px-3 py-4">
             {visible.map((msg, i) =>
               msg.from === "typing" ? (
-                <div key={i} className="bubble-in flex items-center gap-1 self-start rounded-2xl rounded-bl-sm bg-white px-3 py-2.5 shadow-sm">
+                <div
+                  key={i}
+                  className="bubble-in flex items-center gap-1 self-start rounded-2xl rounded-bl-sm bg-white px-3 py-2.5 shadow-sm"
+                >
                   <span className="dot-bounce h-1.5 w-1.5 rounded-full bg-[#8FA79A]" style={{ animationDelay: "0ms" }} />
                   <span className="dot-bounce h-1.5 w-1.5 rounded-full bg-[#8FA79A]" style={{ animationDelay: "150ms" }} />
                   <span className="dot-bounce h-1.5 w-1.5 rounded-full bg-[#8FA79A]" style={{ animationDelay: "300ms" }} />
@@ -77,6 +83,41 @@ function ChatMockup() {
   );
 }
 
+// Reusable animated counter component
+function AnimatedStat({ target, suffix = "", duration = 1800 }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let startTime = null;
+    let animationFrameId;
+
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+
+      // Smooth easeOutExpo formula
+      const easeOut = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      setCount(Math.floor(easeOut * target));
+
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(animate);
+      } else {
+        setCount(target);
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [target, duration]);
+
+  return (
+    <span>
+      {count}
+      {suffix}
+    </span>
+  );
+}
+
 export default function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
@@ -93,14 +134,14 @@ export default function Hero() {
           </div>
 
           <h1
-            className="rise-in font-display mt-5 text-4xl font-800 leading-[1.08] tracking-tight text-[#0E1F17] dark:text-[#EAF6EE] sm:text-5xl"
+            className="rise-in font-display mt-5 text-4xl font-extrabold leading-[1.08] tracking-tight text-[#0E1F17] dark:text-white sm:text-5xl"
             style={{ animationDelay: "80ms" }}
           >
             Turn every chat into a customer
           </h1>
 
           <p
-            className="rise-in mt-5 max-w-md text-[17px] leading-relaxed text-[#3F544A] dark:text-[#9FB3A8]"
+            className="rise-in mt-5 max-w-md text-[17px] leading-relaxed text-[#3F544A] dark:text-[#A7BFB2]"
             style={{ animationDelay: "160ms" }}
           >
             Build no-code forms, run broadcast campaigns, and manage orders — all delivered straight to your customer's WhatsApp. No developers, no waiting.
@@ -111,11 +152,11 @@ export default function Hero() {
             style={{ animationDelay: "240ms" }}
           >
             <div className="flex items-center overflow-hidden rounded-lg border border-[#E4E8E1] bg-white pl-3 focus-within:border-[#1FAF55] dark:border-[#223A2E] dark:bg-[#13231C]">
-              <span className="text-[15px] text-[#3F544A] dark:text-[#9FB3A8]">+91</span>
+              <span className="text-[15px] text-[#3F544A] dark:text-[#A7BFB2]">+91</span>
               <input
                 type="tel"
                 placeholder="Your WhatsApp number"
-                className="w-full bg-transparent px-3 py-3 text-[15px] text-[#0E1F17] outline-none placeholder:text-[#8FA79A] dark:text-[#EAF6EE]"
+                className="w-full bg-transparent px-3 py-3 text-[15px] text-[#0E1F17] outline-none placeholder:text-[#8FA79A] dark:text-white"
               />
             </div>
             <a
@@ -128,7 +169,7 @@ export default function Hero() {
           </div>
 
           <div
-            className="rise-in mt-4 flex items-center gap-4 text-[13px] text-[#3F544A] dark:text-[#9FB3A8]"
+            className="rise-in mt-4 flex items-center gap-4 text-[13px] text-[#3F544A] dark:text-[#A7BFB2]"
             style={{ animationDelay: "300ms" }}
           >
             <span className="flex items-center gap-1.5">
@@ -139,20 +180,37 @@ export default function Hero() {
             </span>
           </div>
 
+          {/* Animated Statistics Row */}
           <div
-            className="rise-in mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-[#E4E8E1] pt-6 dark:border-[#223A2E]"
+            className="rise-in mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-[#E4E8E1] pt-6 dark:border-white/10"
             style={{ animationDelay: "360ms" }}
           >
-            {[
-              ["99%", "delivery rate"],
-              ["30%", "more conversions"],
-              ["10×", "cheaper reach"],
-            ].map(([stat, label]) => (
-              <div key={label}>
-                <p className="font-display text-2xl font-700 text-[#0E1F17] dark:text-[#EAF6EE]">{stat}</p>
-                <p className="text-[12.5px] text-[#3F544A] dark:text-[#9FB3A8]">{label}</p>
-              </div>
-            ))}
+            <div>
+              <p className="font-display text-2xl sm:text-3xl font-extrabold text-[#0E1F17] dark:text-white tabular-nums tracking-tight">
+                <AnimatedStat target={99} suffix="%" duration={1600} />
+              </p>
+              <p className="mt-1 text-[12.5px] font-medium text-[#465E53] dark:text-[#9FB3A8]">
+                delivery rate
+              </p>
+            </div>
+
+            <div>
+              <p className="font-display text-2xl sm:text-3xl font-extrabold text-[#0E1F17] dark:text-white tabular-nums tracking-tight">
+                <AnimatedStat target={30} suffix="%" duration={1800} />
+              </p>
+              <p className="mt-1 text-[12.5px] font-medium text-[#465E53] dark:text-[#9FB3A8]">
+                more conversions
+              </p>
+            </div>
+
+            <div>
+              <p className="font-display text-2xl sm:text-3xl font-extrabold text-[#0E1F17] dark:text-white tabular-nums tracking-tight">
+                <AnimatedStat target={10} suffix="×" duration={1400} />
+              </p>
+              <p className="mt-1 text-[12.5px] font-medium text-[#465E53] dark:text-[#9FB3A8]">
+                cheaper reach
+              </p>
+            </div>
           </div>
         </div>
 
