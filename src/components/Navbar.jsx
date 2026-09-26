@@ -1,10 +1,10 @@
 import React from "react";
-import { MessageSquare } from "lucide-react";
 import { useTheme } from "../ThemeContext";
 import ThemeToggle from "./ThemeToggle";
 
-// Required by Hero.jsx and other components
-export const SIGNUP_URL = "https://app.connecteze.com/signup";
+// Live Route URLs
+export const SIGNIN_URL = "https://app.connecteze.in/login";
+export const SIGNUP_URL = "https://app.connecteze.in/signup";
 
 export default function Navbar() {
   const { isDark } = useTheme();
@@ -16,14 +16,14 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-4 z-50 mx-auto w-full max-w-6xl px-4">
-      {/* Navbar Container with Cream Base & Embedded Doodle Pattern */}
-      <nav className="relative overflow-hidden rounded-2xl border border-[#285744]/20 bg-[#FAF5EC]/95 p-3 shadow-lg backdrop-blur-md transition-all dark:border-white/10 dark:bg-[#0B141A]/95">
+      {/* Navbar Container with matching cream background */}
+      <nav className="relative overflow-hidden rounded-2xl border border-[#285744]/15 bg-[#FAF5EC] p-3 shadow-sm backdrop-blur-md transition-colors dark:border-white/10 dark:bg-[#0B141A]/95">
         
-        {/* Embedded WhatsApp Doodle background */}
+        {/* WhatsApp Doodle background */}
         <div
           className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
           style={{
-            opacity: isDark ? 0.22 : 0.35,
+            opacity: isDark ? 0.22 : 0.2,
             backgroundImage: navDoodleSvg,
             backgroundRepeat: "repeat",
             backgroundSize: "115px 115px",
@@ -32,14 +32,17 @@ export default function Navbar() {
 
         {/* Navbar Content */}
         <div className="relative z-10 flex items-center justify-between">
+          
           {/* Logo & Brand */}
-          <a href="#" className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#25D366] text-white shadow-md">
-              <MessageSquare size={19} className="fill-white/20" />
-            </div>
-            <span className="text-base font-bold text-[#0E1F17] dark:text-[#EAF6EE]">
-              Connecteze
+          <a href="/" className="group flex items-center gap-2">
+            <span className="text-xl font-black tracking-tight text-[#0E1F17] transition-colors dark:text-[#EAF6EE] font-sans">
+            
             </span>
+            <img
+              src="/connectezelogo.png"
+              alt="Connecteze Logo"
+              className="h-9 w-auto object-contain transition-transform group-hover:scale-105"
+            />
           </a>
 
           {/* Navigation Links */}
@@ -50,14 +53,24 @@ export default function Navbar() {
             <a href="#faq" className="hover:text-black dark:hover:text-white transition-colors">FAQ</a>
           </div>
 
-          {/* Right Action: Clean Theme Toggle only */}
-          <div className="flex items-center gap-3">
+          {/* Right Actions: Theme Toggle + Sign In & Sign Up */}
+          <div className="flex items-center gap-2 sm:gap-3">
             <ThemeToggle />
+
+            {/* Sign In Button */}
+            <a
+              href={SIGNIN_URL}
+              className="rounded-xl px-3.5 py-2 text-xs font-semibold text-[#0E1F17] transition hover:bg-black/5 dark:text-[#EAF6EE] dark:hover:bg-white/10"
+            >
+              Sign In
+            </a>
+
+            {/* Sign Up Button */}
             <a
               href={SIGNUP_URL}
               className="rounded-xl bg-[#25D366] px-4 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-[#1FAF55]"
             >
-              Get Started
+              Sign Up
             </a>
           </div>
         </div>

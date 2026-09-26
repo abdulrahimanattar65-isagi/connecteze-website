@@ -26,12 +26,7 @@ export default function CTA() {
             >
               Get Started Free
             </a>
-            <a
-              href="#demo"
-              className="w-full rounded-xl border border-white/60 bg-transparent px-7 py-3 text-sm font-semibold text-white transition hover:bg-white/15 dark:border-white/20 dark:text-[#EAF6EE] dark:hover:bg-white/10 sm:w-auto"
-            >
-              Book a Demo
-            </a>
+           
           </div>
         </div>
       </div>

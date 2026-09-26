@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const TESTIMONIALS = [
+const REVIEWS = [
   {
     quote:
       "We stopped losing orders in comment sections and DMs. Everything now lands in one WhatsApp inbox, and our response time dropped by half.",
@@ -32,100 +32,74 @@ const TESTIMONIALS = [
   },
 ];
 
-// Append first item to the end for seamless continuous looping
-const SLIDES = [...TESTIMONIALS, TESTIMONIALS[0]];
-
-export default function Testimonials() {
+export default function Reviews() {
   const [current, setCurrent] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Auto-slide every 2 seconds
+  const total = REVIEWS.length;
+
+  const handleNext = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % total);
+  }, [total]);
+
+  const handlePrev = useCallback(() => {
+    setCurrent((prev) => (prev - 1 + total) % total);
+  }, [total]);
+
+  // Auto-slide every 4 seconds without delay on initial mount
   useEffect(() => {
     if (isPaused) return;
 
     const timer = setInterval(() => {
       handleNext();
-    }, 2000);
+    }, 4000);
 
     return () => clearInterval(timer);
-  }, [isPaused, current]);
-
-  const handleNext = () => {
-    setIsTransitioning(true);
-    setCurrent((prev) => prev + 1);
-  };
-
-  const handlePrev = () => {
-    if (current === 0) {
-      // Jump invisibly to clone, then slide back to Karan Mehta
-      setIsTransitioning(false);
-      setCurrent(TESTIMONIALS.length);
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          setIsTransitioning(true);
-          setCurrent(TESTIMONIALS.length - 1);
-        });
-      });
-    } else {
-      setIsTransitioning(true);
-      setCurrent((prev) => prev - 1);
-    }
-  };
-
-  // When clone transition ends, silently snap to the real first slide (index 0)
-  const handleTransitionEnd = () => {
-    if (current === TESTIMONIALS.length) {
-      setIsTransitioning(false);
-      setCurrent(0);
-    }
-  };
-
-  // Active indicator dot calculation
-  const activeDotIndex = current % TESTIMONIALS.length;
+  }, [isPaused, handleNext]);
 
   return (
     <section
-      className="relative overflow-hidden bg-[#0A1610] py-24 text-white"
+      className="relative overflow-hidden bg-[#0A1610] py-20 text-white"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       <div className="mx-auto max-w-5xl px-6">
-        <div className="relative flex items-center">
+        <div className="relative flex items-center justify-between">
           {/* Left Arrow */}
           <button
             onClick={handlePrev}
-            aria-label="Previous slide"
-            className="z-20 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm transition-all hover:bg-white/20 active:scale-95"
+            aria-label="Previous review"
+            className="z-20 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm transition-all hover:bg-white/20 active:scale-95"
           >
-            <ChevronLeft size={22} />
+            <ChevronLeft size={20} />
           </button>
 
           {/* Carousel Viewport */}
-          <div className="mx-4 flex-1 overflow-hidden">
-            {/* Sliding Ribbon */}
+          <div className="mx-4 w-full flex-1 overflow-hidden">
+            {/* Sliding Track */}
             <div
-              className={`flex ${
-                isTransitioning ? "transition-transform duration-700 ease-in-out" : ""
-              }`}
-              style={{ transform: `translateX(-${current * 100}%)` }}
-              onTransitionEnd={handleTransitionEnd}
+              className="flex transition-transform duration-500 ease-out"
+              style={{
+                transform: `translateX(-${current * 100}%)`,
+              }}
             >
-              {SLIDES.map((item, index) => (
+              {REVIEWS.map((item, index) => (
                 <div
                   key={index}
                   className="w-full flex-[0_0_100%] px-4 flex flex-col items-center text-center"
                 >
-                  <blockquote className="min-h-[140px] text-xl font-bold leading-relaxed text-white sm:text-2xl md:text-3xl flex items-center justify-center">
+                  <blockquote className="min-h-[110px] text-lg font-medium leading-relaxed text-white sm:text-xl md:text-2xl flex items-center justify-center max-w-3xl">
                     "{item.quote}"
                   </blockquote>
 
-                  <div className="mt-8 flex items-center gap-3.5">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#1FAF55] text-sm font-bold text-white shadow-md shadow-[#1FAF55]/30">
+                  <div className="mt-6 flex items-center gap-3.5">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1FAF55] text-xs font-bold text-white shadow-md shadow-[#1FAF55]/30">
                       {item.initials}
                     </div>
                     <div className="text-left">
-                      <p className="text-[15px] font-bold text-white">{item.name}</p>
+                      <p className="text-[14px] font-bold text-white leading-tight">
+                        {item.name}
+                      </p>
                       <p className="text-xs text-white/60">{item.role}</p>
                     </div>
                   </div>
@@ -137,25 +111,22 @@ export default function Testimonials() {
           {/* Right Arrow */}
           <button
             onClick={handleNext}
-            aria-label="Next slide"
-            className="z-20 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm transition-all hover:bg-white/20 active:scale-95"
+            aria-label="Next review"
+            className="z-20 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm transition-all hover:bg-white/20 active:scale-95"
           >
-            <ChevronRight size={22} />
+            <ChevronRight size={20} />
           </button>
         </div>
 
         {/* Indicators */}
-        <div className="mt-12 flex justify-center items-center gap-2">
-          {TESTIMONIALS.map((_, index) => (
+        <div className="mt-10 flex justify-center items-center gap-2">
+          {REVIEWS.map((_, index) => (
             <button
               key={index}
-              onClick={() => {
-                setIsTransitioning(true);
-                setCurrent(index);
-              }}
-              aria-label={`Go to slide ${index + 1}`}
-              className={`h-1.5 rounded-full transition-all duration-500 ${
-                activeDotIndex === index
+              onClick={() => setCurrent(index)}
+              aria-label={`Go to review ${index + 1}`}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                current === index
                   ? "w-8 bg-[#1FAF55]"
                   : "w-2 bg-white/20 hover:bg-white/40"
               }`}
