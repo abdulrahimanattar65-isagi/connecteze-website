@@ -91,9 +91,7 @@ export default function Services() {
       <div className="pointer-events-none absolute -right-24 top-0 -z-10 h-80 w-80 rounded-full bg-emerald-300/25 blur-[100px] dark:bg-emerald-500/10" />
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-emerald-700/10 bg-white/70 px-3 py-1 text-xs font-bold uppercase tracking-[0.15em] text-[#168344] shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-[#4ADE80]">
-            One connected platform
-          </span>
+         
           <h2 className="font-display mt-4 text-3xl font-extrabold tracking-tight text-[#10251B] dark:text-white sm:text-4xl">
             Everything you need to grow through conversations
           </h2>

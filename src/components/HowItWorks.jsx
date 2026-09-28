@@ -38,7 +38,7 @@ export default function HowItWorks() {
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <div className="max-w-xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-emerald-700/10 bg-white/70 px-3 py-1 text-[11px] font-bold uppercase tracking-[.16em] text-[#168344] shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-[#70E697]">
-            <Sparkles size={13} /> Simple by design
+           
           </span>
           <h2 className="font-display mt-4 text-3xl font-700 tracking-tight text-[#0E1F17] dark:text-[#EAF6EE] sm:text-4xl">
             From link to WhatsApp in three steps
