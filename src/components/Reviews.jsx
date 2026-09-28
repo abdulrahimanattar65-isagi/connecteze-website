@@ -1,191 +1,81 @@
-import { useState, useEffect, useRef } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-
 const REVIEWS = [
   {
-    quote:
-      "We stopped losing orders in comment sections and DMs. Everything now lands in one WhatsApp inbox, and our response time dropped by half.",
+    quote: "We stopped losing orders in comment sections and DMs. Everything now lands in one WhatsApp inbox, and our response time dropped by half.",
     name: "Reema Anand",
     role: "Founder, Bakehouse Co.",
     initials: "RA",
   },
   {
-    quote:
-      "Connecteze made scheduling broadcasts and sending utility updates completely seamless. Our campaign conversion rates jumped by 40% in week one.",
+    quote: "Connecteze made scheduling broadcasts and sending utility updates completely seamless. Our campaign conversion rates jumped by 40% in week one.",
     name: "Arjun Verma",
     role: "Marketing Lead, RetailKart",
     initials: "AV",
   },
   {
-    quote:
-      "The CRM integration and scheduled campaigns eliminated manual outreach entirely. Reliable delivery and real-time reply tracking are invaluable.",
+    quote: "The CRM integration and scheduled campaigns eliminated manual outreach entirely. Reliable delivery and real-time reply tracking are invaluable.",
     name: "Sneha Patel",
     role: "Operations Head, Nexa Health",
     initials: "SP",
   },
   {
-    quote:
-      "Setting up Meta-approved templates used to take days. With Connecteze, we launch targeted bulk campaigns in just minutes.",
+    quote: "Setting up Meta-approved templates used to take days. With Connecteze, we launch targeted bulk campaigns in just minutes.",
     name: "Karan Mehta",
     role: "Growth Director, Pulse Media",
     initials: "KM",
   },
 ];
 
-// Structure: [ Clone(Last), Real(0), Real(1), Real(2), Real(3), Clone(First) ]
-const SLIDES = [
-  REVIEWS[REVIEWS.length - 1],
-  ...REVIEWS,
-  REVIEWS[0],
-];
+function ReviewCard({ review }) {
+  return (
+    <article className="flex w-[min(82vw,390px)] shrink-0 flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.06] p-6 shadow-lg shadow-black/10 backdrop-blur-sm sm:p-7">
+      <>
+        <div aria-label="5 out of 5 stars" className="mb-4 flex gap-1 text-[#7DE6A2]">
+          {Array.from({ length: 5 }, (_, index) => <span key={index}>★</span>)}
+        </div>
+        <blockquote className="text-[15px] leading-7 text-white/90">“{review.quote}”</blockquote>
+      </>
+      <div className="mt-7 flex items-center gap-3">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#25D366] to-[#138B43] text-xs font-bold text-white">
+          {review.initials}
+        </div>
+        <div>
+          <p className="text-sm font-semibold text-white">{review.name}</p>
+          <p className="mt-0.5 text-xs text-[#A9BFB0]">{review.role}</p>
+        </div>
+      </div>
+    </article>
+  );
+}
 
 export default function Reviews() {
-  // Start at index 1 (the first real review)
-  const [currentIndex, setCurrentIndex] = useState(1);
-  const [hasTransition, setHasTransition] = useState(true);
-  const [isPaused, setIsPaused] = useState(false);
-  const isJumpingRef = useRef(false);
-
-  // Auto-slide forward every 3.5 seconds
-  useEffect(() => {
-    if (isPaused) return;
-
-    const timer = setInterval(() => {
-      handleNext();
-    }, 3000);
-
-    return () => clearInterval(timer);
-  }, [isPaused, currentIndex]);
-
-  const handleNext = () => {
-    if (isJumpingRef.current) return;
-    setHasTransition(true);
-    setCurrentIndex((prev) => prev + 1);
-  };
-
-  const handlePrev = () => {
-    if (isJumpingRef.current) return;
-    setHasTransition(true);
-    setCurrentIndex((prev) => prev - 1);
-  };
-
-  // Called when the slide animation completes
-  const handleTransitionEnd = () => {
-    // If we just slid forward into the cloned first review (at the end)
-    if (currentIndex === SLIDES.length - 1) {
-      isJumpingRef.current = true;
-      // Instantly jump to the real first review without animation
-      setHasTransition(false);
-      setCurrentIndex(1);
-      // Re-enable transitions after paint
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          isJumpingRef.current = false;
-        });
-      });
-    }
-
-    // If we just slid backward into the cloned last review (at index 0)
-    if (currentIndex === 0) {
-      isJumpingRef.current = true;
-      setHasTransition(false);
-      setCurrentIndex(REVIEWS.length);
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          isJumpingRef.current = false;
-        });
-      });
-    }
-  };
-
-  // Calculate active indicator index (0 to REVIEWS.length - 1)
-  let activeDot = currentIndex - 1;
-  if (currentIndex === 0) activeDot = REVIEWS.length - 1;
-  if (currentIndex === SLIDES.length - 1) activeDot = 0;
-
   return (
-    <section
-      id="reviews"
-      className="reviews-section relative overflow-hidden bg-[#0A1610] py-20 text-white"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-    >
-      <div className="mx-auto max-w-5xl px-6">
-        <div className="relative flex items-center justify-between">
-          
-          {/* Left Arrow Button */}
-          <button
-            onClick={handlePrev}
-            aria-label="Previous review"
-            className="z-20 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm transition-all hover:bg-white/20 active:scale-95"
-          >
-            <ChevronLeft size={20} />
-          </button>
-
-          {/* Carousel Viewport */}
-          <div className="mx-4 w-full flex-1 overflow-hidden">
-            {/* Sliding Track */}
-            <div
-              className={`flex ${
-                hasTransition ? "transition-transform duration-600 ease-out" : ""
-              }`}
-              style={{
-                transform: `translateX(-${currentIndex * 100}%)`,
-              }}
-              onTransitionEnd={handleTransitionEnd}
-            >
-              {SLIDES.map((item, index) => (
-                <div
-                  key={index}
-                  className="w-full flex-[0_0_100%] px-4 flex flex-col items-center text-center"
-                >
-                  <blockquote className="min-h-[110px] text-lg font-medium leading-relaxed text-white sm:text-xl md:text-2xl flex items-center justify-center max-w-3xl">
-                    "{item.quote}"
-                  </blockquote>
-
-                  <div className="mt-6 flex items-center gap-3.5">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1FAF55] text-xs font-bold text-white shadow-md shadow-[#1FAF55]/30">
-                      {item.initials}
-                    </div>
-                    <div className="text-left">
-                      <p className="text-[14px] font-bold text-white leading-tight">
-                        {item.name}
-                      </p>
-                      <p className="text-xs text-[#9FB3A8]">{item.role}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right Arrow Button */}
-          <button
-            onClick={handleNext}
-            aria-label="Next review"
-            className="z-20 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm transition-all hover:bg-white/20 active:scale-95"
-          >
-            <ChevronRight size={20} />
-          </button>
+    <section id="reviews" className="reviews-section relative overflow-hidden bg-[#0A1610] py-20 text-white sm:py-24">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="reviews-glow absolute -left-40 top-0 h-80 w-80 rounded-full bg-emerald-500/20 blur-[100px]" />
+        <div className="reviews-glow reviews-glow-late absolute -right-36 bottom-0 h-96 w-96 rounded-full bg-teal-400/15 blur-[110px]" />
+        <div className="absolute left-[8%] top-28 hidden -rotate-12 text-[7rem] font-black leading-none text-white/[0.055] lg:block">“</div>
+        <div className="reviews-word-track absolute left-0 top-1/2 flex -translate-y-1/2 whitespace-nowrap text-[clamp(3rem,9vw,8rem)] font-black uppercase tracking-[0.12em] text-white/[0.09]">
+          <span> TRUST · CONNECT · GROW · REPEAT ·&nbsp;</span><span>TRUST · CONNECT · GROW · REPEAT ·&nbsp;</span>
+        </div>
+        <div className="reviews-note absolute right-[12%] top-28 hidden rotate-6 rounded-2xl border border-white/15 bg-white/[0.08] px-4 py-3 text-sm text-white/70 shadow-xl backdrop-blur-md sm:block">
+          <span className="mr-2 text-[#7DE6A2]">✦</span> Real feedback, real growth
+        </div>
+      </div>
+      <div className="relative">
+        <div className="mx-auto max-w-6xl px-6 text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#7DE6A2]">Customer stories</p>
+          <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">Good conversations. Better outcomes.</h2>
+          <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-[#A9BFB0] sm:text-base">See how teams use Connecteze to make every WhatsApp conversation count.</p>
         </div>
 
-        {/* Indicators */}
-        <div className="mt-10 flex justify-center items-center gap-2">
-          {REVIEWS.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                setHasTransition(true);
-                setCurrentIndex(index + 1);
-              }}
-              aria-label={`Go to review ${index + 1}`}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                activeDot === index
-                  ? "w-8 bg-[#1FAF55]"
-                  : "w-2 bg-white/20 hover:bg-white/40"
-              }`}
-            />
-          ))}
+        <div className="reviews-marquee mt-12 overflow-hidden" aria-label="Customer reviews">
+          <div className="reviews-track flex w-max gap-5">
+            {[0, 1].map((copy) => (
+              <div key={copy} className="flex shrink-0 gap-5" aria-hidden={copy === 1 ? "true" : undefined}>
+                {REVIEWS.map((review) => <ReviewCard key={`${copy}-${review.initials}`} review={review} />)}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

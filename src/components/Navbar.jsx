@@ -36,11 +36,14 @@ export default function Navbar() {
             <a href="/" className="hover:text-[#25D366] transition-colors">
               Home
             </a>
-            <a href="#features" className="hover:text-[#25D366] transition-colors">
-              Features
+            <a href="#platform-preview" className="hover:text-[#25D366] transition-colors">
+              Platform
             </a>
             <a href="#what-we-do" className="hover:text-[#25D366] transition-colors">
               What We Do
+            </a>
+            <a href="#services" className="hover:text-[#25D366] transition-colors">
+              Services
             </a>
             <a href="#templates" className="hover:text-[#25D366] transition-colors">
               Templates

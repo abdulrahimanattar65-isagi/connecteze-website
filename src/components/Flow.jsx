@@ -6,6 +6,9 @@ import {
   Megaphone,
   CalendarCheck,
   Send,
+  BarChart3,
+  CheckCheck,
+  MessageCircle,
 } from "lucide-react";
 
 const STEPS = [
@@ -33,8 +36,23 @@ export default function Flow() {
   const cursorPositionPercent = (currentStep / (STEPS.length - 1)) * 100;
 
   return (
-    <section id="flow" className="py-16 bg-[#FAF5EC] dark:bg-[#0B1512] transition-colors">
-      <div className="mx-auto max-w-5xl px-6">
+    <section id="flow" className="flow-section relative isolate overflow-hidden py-20 transition-colors sm:py-24">
+      <div aria-hidden="true" className="flow-grid pointer-events-none absolute inset-0 -z-10" />
+      <div aria-hidden="true" className="flow-orb flow-orb-left pointer-events-none absolute -left-40 top-0 -z-10 h-96 w-96 rounded-full bg-emerald-300/30 blur-[110px] dark:bg-emerald-500/10" />
+      <div aria-hidden="true" className="flow-orb flow-orb-right pointer-events-none absolute -right-40 bottom-0 -z-10 h-[28rem] w-[28rem] rounded-full bg-lime-200/35 blur-[120px] dark:bg-teal-400/10" />
+
+      <div aria-hidden="true" className="flow-illustration flow-illustration-campaign absolute left-[4%] top-[54%] z-0 hidden w-36 rounded-2xl border border-emerald-900/10 bg-white/75 p-3 shadow-xl shadow-emerald-950/5 backdrop-blur-xl 2xl:block dark:border-white/10 dark:bg-[#10251b]/75">
+        <div className="flex items-center gap-2"><span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#EAF7EE] text-[#168344] dark:bg-[#1B3525] dark:text-[#70E697]"><Megaphone size={14} /></span><div><p className="text-[9px] font-bold text-[#183324] dark:text-white">Campaign sent</p><p className="text-[8px] text-[#718176] dark:text-[#A7BFB2]">Just now</p></div></div>
+        <div className="mt-3 flex items-end gap-1"><span className="text-xs font-extrabold text-[#183324] dark:text-white">2,480</span><span className="mb-0.5 text-[8px] text-[#718176] dark:text-[#A7BFB2]">delivered</span><BarChart3 size={14} className="ml-auto text-[#1FAF55]" /></div>
+        <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-[#EAF1E9] dark:bg-white/10"><div className="h-full w-[82%] rounded-full bg-gradient-to-r from-[#1FAF55] to-[#6DE397]" /></div>
+      </div>
+
+      <div aria-hidden="true" className="flow-illustration flow-illustration-message absolute right-[4%] top-[24%] z-0 hidden w-36 rounded-2xl border border-emerald-900/10 bg-white/75 p-3 shadow-xl shadow-emerald-950/5 backdrop-blur-xl 2xl:block dark:border-white/10 dark:bg-[#10251b]/75">
+        <div className="flex items-start gap-2"><span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#25D366]/15 text-[#168344] dark:text-[#70E697]"><MessageCircle size={14} /></span><div><p className="text-[9px] font-bold text-[#183324] dark:text-white">Order update</p><p className="mt-1 text-[9px] leading-4 text-[#5C6F64] dark:text-[#A7BFB2]">Your order is on its way!</p></div></div>
+        <div className="mt-2 flex items-center justify-end gap-1 text-[8px] text-[#829287]">Delivered <CheckCheck size={11} className="text-sky-600" /></div>
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-5xl px-6">
         
         {/* Professional Section Header */}
         <div className="text-center mb-14">
@@ -51,7 +69,7 @@ export default function Flow() {
         <div className="relative">
           
           {/* Base Track Line - constrained strictly between the center of 1st and last icons */}
-          <div className="absolute top-5 left-[32px] right-[32px] sm:left-[40px] sm:right-[40px] h-[3px] bg-[#285744]/15 dark:bg-white/10 -translate-y-1/2">
+          <div className="flow-track absolute top-5 left-[32px] right-[32px] sm:left-[40px] sm:right-[40px] h-[3px] -translate-y-1/2">
             
             {/* Active Progress Fill */}
             <div

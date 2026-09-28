@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, Check, MessageCircle } from "lucide-react";
 import { SIGNUP_URL } from "./Navbar";
+import HeroChatMockup from "./HeroChatMockup";
 
 const SCRIPT = [
   { from: "them", text: "Hi! Do you deliver to Koramangala?" },
@@ -120,10 +121,11 @@ function AnimatedStat({ target, suffix = "", duration = 1800 }) {
 
 export default function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[600px] bg-gradient-to-b from-[#EAF7EE] to-transparent dark:from-[#0F1F18]" />
+    <section id="top" className="hero-section relative isolate overflow-hidden bg-white dark:bg-[#091710]">
+      <div className="pointer-events-none absolute -right-32 top-8 -z-0 h-96 w-96 rounded-full border border-[#25D366]/10 bg-[#25D366]/[0.04] blur-[1px]" />
+      <div className="pointer-events-none absolute right-10 top-24 -z-0 h-64 w-64 rounded-full bg-[#25D366]/10 blur-[90px]" />
 
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 pb-20 pt-10 md:grid-cols-2 md:pt-16">
+      <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 pb-24 pt-14 md:grid-cols-[1.05fr_.95fr] md:gap-16 md:pt-20">
         <div>
           <div
             className="rise-in inline-flex items-center gap-2 rounded-full border border-[#D9F2E1] bg-white px-3 py-1 text-[13px] font-medium text-[#12793A] dark:border-[#1F3229] dark:bg-[#13231C] dark:text-[#4ADE80]"
@@ -134,7 +136,7 @@ export default function Hero() {
           </div>
 
           <h1
-            className="rise-in font-display mt-5 text-4xl font-extrabold leading-[1.08] tracking-tight text-[#0E1F17] dark:text-white sm:text-5xl"
+            className="rise-in font-display mt-5 max-w-xl text-4xl font-extrabold leading-[1.08] tracking-[-0.04em] text-[#10251B] dark:text-white sm:text-5xl lg:text-[3.65rem]"
             style={{ animationDelay: "80ms" }}
           >
             Turn every chat into a customer
@@ -215,7 +217,7 @@ export default function Hero() {
         </div>
 
         <div className="rise-in" style={{ animationDelay: "200ms" }}>
-          <ChatMockup />
+          <HeroChatMockup />
         </div>
       </div>
     </section>

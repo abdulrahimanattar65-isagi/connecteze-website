@@ -2,38 +2,34 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Flow from "./components/Flow";
-import Features from "./components/Features";     
 import WhatWeDo from "./components/WhatWeDo";     
 import Templates from "./components/Templates";  
 import Reviews from "./components/Reviews";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
+import LogoStrip from "./components/LogoStrip";
+import HowItWorks from "./components/HowItWorks";
+import CTA from "./components/CTA";
+import Services from "./components/Services";
+import PlatformPreview from "./components/PlatformPreview";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#F7F4EE] text-[#0E1F17] transition-colors dark:bg-[#0B1512] dark:text-[#EAF6EE]">
-      {/* 1. Header (Clean White / Flat) */}
+    <div className="min-h-screen bg-[#F7F9F5] text-[#10251B] transition-colors dark:bg-[#091710] dark:text-[#EAF6EE]">
       <Navbar />
-
-      {/* 2. Main Content Sections with the WhatsApp Doodle Background Pattern */}
-      <main
-        className="relative bg-[#F8F5EE] bg-repeat transition-colors dark:bg-[#0B141A]"
-        style={{
-          backgroundImage: "url('/whatsapp-doodle-bg.png')",
-          backgroundSize: "450px auto", // controls doodle pattern density
-        }}
-      >
+      <main className="relative overflow-hidden bg-[#F7F9F5] transition-colors dark:bg-[#091710]">
         <Hero />
+        <LogoStrip />
+        <HowItWorks />
         <Flow />
-         <Features /> 
-         <WhatWeDo /> 
-         <Templates /> 
+        <WhatWeDo />
+        <Services />
+        <PlatformPreview />
+        <Templates />
       </main>
-
-      {/* 3. Sections Kept Exactly as They Are */}
       <Reviews />
+      <CTA />
       <FAQ />
-      
       <Footer />
     </div>
   );
