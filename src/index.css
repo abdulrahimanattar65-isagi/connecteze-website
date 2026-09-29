@@ -163,7 +163,7 @@ body { min-height: 100vh; margin: 0; color: var(--ink); font-family: 'Inter', ui
 @media (min-width: 768px) {
   .how-it-works-note-1 { grid-column: 1; grid-row: 1; justify-self: start; margin: 16px 0 0 4%; }
   .how-it-works-note-2 { grid-column: 2; grid-row: 1; justify-self: end; margin: 78px 4% 0 0; }
-  .how-it-works-note-3 { grid-column: 1; grid-row: 2; justify-self: center; margin: 14px 0 0 28%; }
+  .how-it-works-note-3 { grid-column: 1; grid-row: 2; justify-self: center; margin: 14px 0 0 88%; }
 }
 
 /* Winding campaign road and moving delivery car. */
