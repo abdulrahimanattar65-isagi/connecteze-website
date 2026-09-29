@@ -20,8 +20,8 @@ const SOCIAL_LINKS = [
 
 const SERVICES = ["WhatsApp Business API", "WhatsApp Marketing", "CRM & Contacts", "Sales Pipeline", "Shared Team Inbox", "Chatbots", "AI Assistance", "Automation", "Customer Support", "E-commerce", "Analytics & Reports", "Integrations"];
 
-function FooterLink({ children, onClick, href }) {
-  const shared = "block text-left text-[13px] leading-6 text-[#B6C6BC] transition-colors hover:text-[#44E18A]";
+function FooterLink({ children, onClick, href, centered = false }) {
+  const shared = `block ${centered ? "text-center" : "text-left"} text-[13px] leading-6 text-[#B6C6BC] transition-colors hover:text-[#44E18A]`;
   if (onClick) return <button type="button" onClick={onClick} className={shared}>{children}</button>;
   return <a href={href} className={shared}>{children}</a>;
 }
@@ -60,25 +60,25 @@ export default function Footer() {
               <ul className="mt-4 space-y-2.5">
                 <li><FooterLink onClick={() => setActiveProduct("broadcast")}>WhatsApp Broadcast</FooterLink></li>
                 <li><FooterLink onClick={() => setActiveProduct("crm")}>CRM Campaigns</FooterLink></li>
-                <li><FooterLink onClick={() => setActiveProduct("templates")}>Ready Templates</FooterLink></li>
+                <li><FooterLink onClick={() => setActiveProduct("templates")}>Templates</FooterLink></li>
                 <li><FooterLink onClick={() => setActiveProduct("pricing")}>Pricing Plans</FooterLink></li>
               </ul>
             </div>
 
             <div className="col-span-2 sm:col-span-1 lg:col-span-3">
-              <h4 className="footer-heading">Services</h4>
+              <h4 className="footer-heading text-left lg:text-center">Services</h4>
               <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5">
                 {SERVICES.map((service) => <li key={service}><FooterLink href="#services">{service}</FooterLink></li>)}
               </ul>
             </div>
 
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 lg:pl-4">
               <h4 className="footer-heading">Company</h4>
               <ul className="mt-4 space-y-2.5">
                 <li><FooterLink href="https://spitel.com">About Spitel</FooterLink></li>
                 <li><FooterLink onClick={() => setIsPrivacyOpen(true)}>Privacy Policy</FooterLink></li>
                 <li><FooterLink onClick={() => setIsTermsOpen(true)}>Terms of Service</FooterLink></li>
-                <li><FooterLink onClick={() => setIsContactOpen(true)}>Contact Us</FooterLink></li>
+                
               </ul>
             </div>
 
@@ -89,8 +89,8 @@ export default function Footer() {
                 Contact our team <ArrowUpRight size={14} />
               </button>
               <div className="mt-5 space-y-2.5 text-xs text-[#B6C6BC]">
-                <p className="flex items-center gap-2"><Phone size={13} className="text-[#25D366]" /> +91 78920 59939</p>
-                <p className="flex items-center gap-2"><Mail size={13} className="text-[#25D366]" /> info.spitel@gmail.com</p>
+                <a className="inline-flex items-center gap-2 text-[#B6C6BC] transition hover:text-[#44E18A]" href="tel:+917892059939"><Phone size={13} className="text-[#25D366]" /> +91 78920 59939</a>
+                <a className="flex items-center gap-2 text-[#B6C6BC] transition hover:text-[#44E18A]" href="https://mail.google.com/mail/?view=cm&amp;to=info.spitel@gmail.com" target="_blank" rel="noopener noreferrer"><Mail size={13} className="text-[#25D366]" /> info.spitel@gmail.com</a>
                 <a className="inline-flex items-center gap-2 text-[#B6C6BC] transition hover:text-[#44E18A]" href="https://api.whatsapp.com/send/?phone=917892059939&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer"><MessageCircle size={13} className="text-[#25D366]" /> Chat on WhatsApp</a>
               </div>
             </div>

@@ -132,7 +132,7 @@ function IntegrationMockup() {
 export default function PlatformPreview() {
   const [sectionRef, inView] = useInView({ threshold: 0.12 });
   return (
-    <section id="platform-preview" ref={sectionRef} className="platform-preview relative isolate overflow-hidden py-20 sm:py-24">
+    <section id="platform-preview" ref={sectionRef} className="platform-preview relative isolate overflow-hidden py-12 sm:py-24">
       <div aria-hidden="true" className="platform-grid pointer-events-none absolute inset-0 -z-10 opacity-50" />
       <div className="pointer-events-none absolute -left-28 top-20 -z-10 h-80 w-80 rounded-full bg-emerald-500/15 blur-[100px]" />
       <div className="pointer-events-none absolute -right-28 bottom-0 -z-10 h-96 w-96 rounded-full bg-teal-400/10 blur-[110px]" />
@@ -144,7 +144,16 @@ export default function PlatformPreview() {
         </div>
         <div className={`grid gap-4 lg:grid-cols-12 ${inView ? "platform-visible" : ""}`}>
           <div className="lg:col-span-7"><AnalyticsMockup /></div>
-          <div className="lg:col-span-5"><AiChatMockup /></div>
+          <div className="space-y-4 lg:col-span-5">
+            <AiChatMockup />
+            <div className="platform-card flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-4 shadow-xl shadow-black/10 backdrop-blur-xl" style={{ animationDelay: "210ms" }}>
+              <div className="flex min-w-0 items-center gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-300/10 text-emerald-300"><Clock3 size={18} /></span>
+                <div className="min-w-0"><p className="text-xs font-semibold text-white">Fast team responses</p><p className="mt-1 text-[10px] text-white/45">Average first reply this week</p></div>
+              </div>
+              <div className="shrink-0 text-right"><p className="text-xl font-bold text-white">2m 14s</p><p className="mt-0.5 text-[10px] font-semibold text-emerald-300">↓ 18% faster</p></div>
+            </div>
+          </div>
           <div className="lg:col-span-5"><AutomationMockup /></div>
           <div className="lg:col-span-7"><IntegrationMockup /></div>
         </div>

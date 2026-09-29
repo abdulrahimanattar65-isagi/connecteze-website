@@ -36,11 +36,11 @@ export default function Navbar() {
             <a href="/" className="hover:text-[#25D366] transition-colors">
               Home
             </a>
-            <a href="#platform-preview" className="hover:text-[#25D366] transition-colors">
-              Platform
-            </a>
             <a href="#what-we-do" className="hover:text-[#25D366] transition-colors">
               What We Do
+            </a>
+            <a href="#platform-preview" className="hover:text-[#25D366] transition-colors">
+              Platform
             </a>
             <a href="#services" className="hover:text-[#25D366] transition-colors">
               Services
@@ -62,7 +62,7 @@ export default function Navbar() {
 
           {/* Right Actions: Theme Toggle + Sign In & Sign Up Button */}
           {/* Sign Up button aligns with the right edge of the last card */}
-          <div className="flex items-center gap-3">
+          <div className="ml-3 flex items-center gap-3 md:ml-0">
             <ThemeToggle />
 
             {/* Sign In Link */}

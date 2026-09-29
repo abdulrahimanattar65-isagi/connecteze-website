@@ -125,7 +125,7 @@ export default function Hero() {
       <div className="pointer-events-none absolute -right-32 top-8 -z-0 h-96 w-96 rounded-full border border-[#25D366]/10 bg-[#25D366]/[0.04] blur-[1px]" />
       <div className="pointer-events-none absolute right-10 top-24 -z-0 h-64 w-64 rounded-full bg-[#25D366]/10 blur-[90px]" />
 
-      <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 pb-24 pt-14 md:grid-cols-[1.05fr_.95fr] md:gap-16 md:pt-20">
+      <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 pb-12 pt-14 md:grid-cols-[1.05fr_.95fr] md:gap-16 md:pb-24 md:pt-20">
         <div>
           <div
             className="rise-in inline-flex items-center gap-2 rounded-full border border-[#D9F2E1] bg-white px-3 py-1 text-[13px] font-medium text-[#12793A] dark:border-[#1F3229] dark:bg-[#13231C] dark:text-[#4ADE80]"

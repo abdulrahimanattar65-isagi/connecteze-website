@@ -26,7 +26,7 @@ export default function HowItWorks() {
   const [ref, inView] = useInView({ threshold: 0.2 });
 
   return (
-    <section id="how-it-works" className="how-it-works-section relative isolate overflow-hidden py-20 sm:py-24">
+    <section id="how-it-works" className="how-it-works-section relative isolate overflow-hidden py-12 sm:py-24">
       <div aria-hidden="true" className="how-it-works-paper absolute inset-0 -z-10" />
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">

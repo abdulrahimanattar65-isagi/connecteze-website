@@ -35,7 +35,7 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="faq-section relative isolate overflow-hidden pb-28 pt-20 transition-colors"
+      className="faq-section relative isolate overflow-hidden pb-12 pt-12 transition-colors sm:pb-28 sm:pt-20"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         <div className="faq-dot-grid absolute inset-0" />
@@ -47,10 +47,6 @@ export default function FAQ() {
         <MessageCircle size={19} />
         <span className="absolute -right-1 -top-1 h-3 w-3 rounded-full border-2 border-[#F2F8EF] bg-[#25D366] dark:border-[#10231a]" />
       </div>
-      <div aria-hidden="true" className="faq-floating-art faq-floating-art-bottom pointer-events-none absolute bottom-5 left-[9%] z-0 flex h-12 w-12 items-center justify-center rounded-full border border-violet-300/40 bg-violet-50/90 text-violet-600 shadow-lg shadow-violet-900/10 backdrop-blur-md dark:border-violet-200/15 dark:bg-violet-300/10 dark:text-violet-200">
-        <HelpCircle size={21} />
-      </div>
-
       <div aria-hidden="true" className="faq-side-art pointer-events-none absolute left-[calc(50%-700px)] top-[35%] z-0 hidden w-44 rounded-2xl border border-emerald-900/10 bg-white/65 p-3 shadow-xl shadow-emerald-950/5 backdrop-blur-lg xl:block xl:left-4 dark:border-white/10 dark:bg-[#10251b]/60">
         <div className="flex items-center gap-2"><span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#EAF7EE] text-[#168344] dark:bg-[#1B3525] dark:text-[#70E697]"><HelpCircle size={17} /></span><div><p className="text-[10px] font-bold text-[#183324] dark:text-white">Need an answer?</p><p className="text-[9px] text-[#718176] dark:text-[#A7BFB2]">We’re here to help</p></div></div>
         <div className="mt-3 rounded-xl rounded-tl-sm bg-[#EAF7EE] px-2.5 py-2 text-[9px] leading-4 text-[#426250] dark:bg-white/5 dark:text-[#C1D5C7]">Ask us about setup, campaigns, or support.</div>

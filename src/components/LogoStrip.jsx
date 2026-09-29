@@ -12,7 +12,7 @@ const BRANDS = [
 export default function LogoStrip() {
   const track = [...BRANDS, ...BRANDS];
   return (
-    <section className="border-y border-[#E4E8E1] bg-white py-8 dark:border-[#223A2E] dark:bg-[#0B1512]">
+    <section className="border-y border-[#E4E8E1] bg-white py-6 sm:py-8 dark:border-[#223A2E] dark:bg-[#0B1512]">
       <p className="mx-auto mb-5 max-w-6xl px-6 text-center text-[13px] font-medium uppercase tracking-wide text-[#8FA79A]">
         Trusted by 800+ growing businesses
       </p>

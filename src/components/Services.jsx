@@ -1,7 +1,7 @@
 import {
   MessageCircle, Megaphone, ContactRound, GitBranch, MessagesSquare,
   Bot, Sparkles, Workflow, Headset, ShoppingBag, BarChart3, Plug,
-  ArrowUpRight, Smartphone, Send, BadgeCheck, UsersRound, UserRound,
+  ArrowUpRight, Smartphone, CodeXml, Send, BadgeCheck, UsersRound, UserRound,
   CalendarDays, CircleDollarSign, Check, ListChecks, WandSparkles, Zap,
   TicketCheck, Package, TrendingUp, Boxes,
 } from "lucide-react";
@@ -24,7 +24,7 @@ const SERVICES = [
 ];
 
 const SERVICE_SCENES = {
-  "WhatsApp Business API": [Smartphone, MessageCircle, BadgeCheck],
+  "WhatsApp Business API": [Smartphone, CodeXml, BadgeCheck],
   "WhatsApp Marketing": [Megaphone, UsersRound, Send],
   "CRM & Contacts": [ContactRound, UserRound, CalendarDays],
   "Sales Pipeline": [GitBranch, CircleDollarSign, Check],
@@ -57,8 +57,8 @@ function ServiceCard({ service, index }) {
         </div>
         <ArrowUpRight size={15} className="service-card-corner" />
       </div>
-      <h3 className="font-display relative z-10 mt-4 text-lg font-bold leading-tight text-[#151b18]">{title}</h3>
-      <p className="relative z-10 mt-2 text-[13px] leading-relaxed text-[#53645b]">{description}</p>
+      <h3 className="font-display relative z-10 mt-4 text-lg font-bold leading-tight text-[#151b18] dark:text-[#EAF6EE]">{title}</h3>
+      <p className="relative z-10 mt-2 text-[13px] leading-relaxed text-[#53645b] dark:text-[#B8CFC1]">{description}</p>
     </article>
   );
 }
@@ -68,7 +68,7 @@ export default function Services() {
   const visibleServices = showAll ? SERVICES : SERVICES.slice(0, 6);
 
   return (
-    <section id="services" className="services-section relative isolate overflow-hidden py-20 sm:py-24">
+    <section id="services" className="services-section relative isolate overflow-hidden py-12 sm:py-24">
       <div className="pointer-events-none absolute -right-24 top-0 -z-10 h-80 w-80 rounded-full bg-emerald-300/25 blur-[100px] dark:bg-emerald-500/10" />
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">

@@ -38,7 +38,7 @@ const TEMPLATES = [
 
 export default function Templates() {
   return (
-    <section id="templates" className="mx-auto max-w-6xl px-6 py-24">
+    <section id="templates" className="mx-auto max-w-6xl px-6 py-12 sm:py-24">
       <div className="max-w-xl">
         <h2 className="font-display text-3xl font-bold tracking-tight text-[#0E1F17] dark:text-[#EAF6EE] sm:text-4xl">
           Turn WhatsApp into your primary revenue channel

@@ -4,7 +4,7 @@ import { SIGNUP_URL } from "./Navbar";
 
 export default function CTA() {
   return (
-    <section id="cta" className="cta-section mx-auto max-w-6xl px-6 py-20">
+    <section id="cta" className="cta-section mx-auto max-w-6xl px-6 py-12 sm:py-20">
       <div className="relative overflow-hidden rounded-[2.5rem] bg-[#1FAF55] px-8 py-16 text-center text-white shadow-xl transition-colors duration-300 dark:border dark:border-white/10 dark:bg-[#132A1C] sm:px-16 sm:py-20">
         <div aria-hidden="true" className="cta-art pointer-events-none absolute inset-0 z-0 overflow-hidden">
           <div className="cta-dot-grid absolute inset-0 opacity-25" />

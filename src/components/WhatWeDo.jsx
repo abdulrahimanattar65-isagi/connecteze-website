@@ -327,28 +327,28 @@ function GlassCardItem({ item, index }) {
         </div>
 
         {/* Content Column */}
-        <div className={`relative isolate min-h-[250px] overflow-hidden rounded-2xl py-2 pr-[8.5rem] sm:pr-[10.5rem] ${reversed ? "md:order-1" : ""}`}>
+        <div className={`relative isolate min-h-[250px] overflow-hidden rounded-2xl py-2 pr-0 sm:pr-[10.5rem] ${reversed ? "md:order-1" : ""}`}>
           <StatementIllustration type={item.illustrationType} />
           <div className="relative z-10">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-[#25D366] to-[#1FAF55] text-white shadow-lg shadow-[#1FAF55]/30 transition-transform duration-300 group-hover:scale-110">
               <Icon size={20} />
             </div>
-            <span className="text-xs font-bold uppercase tracking-wider text-[#1FAF55] dark:text-[#4ADE80]">
+            <span className="whitespace-nowrap text-[10px] font-bold uppercase tracking-[.08em] text-[#1FAF55] dark:text-[#4ADE80] sm:whitespace-normal sm:text-xs sm:tracking-wider">
               {item.tagline}
             </span>
           </div>
 
-          <h3 className="font-display mt-4 text-2xl sm:text-3xl font-extrabold tracking-tight text-[#0E1F17] dark:text-white">
+          <h3 className="font-display mt-4 pr-24 text-2xl sm:pr-0 sm:text-3xl font-extrabold tracking-tight text-[#0E1F17] dark:text-white">
             {item.title}
           </h3>
 
-          <p className="mt-3.5 text-sm sm:text-base leading-relaxed text-[#3F544A] dark:text-[#9FB3A8]">
+          <p className="mt-3.5 pr-24 text-sm sm:pr-0 sm:text-base leading-relaxed text-[#3F544A] dark:text-[#9FB3A8]">
             {item.text}
           </p>
 
           {/* Quick checklist points */}
-          <div className="mt-5 flex items-center gap-4 text-xs font-semibold text-gray-700 dark:text-gray-300">
+          <div className="mt-5 flex items-center gap-4 pr-24 text-xs font-semibold text-gray-700 dark:text-gray-300 sm:pr-0">
             <span className="flex items-center gap-1.5">
               <Check size={14} className="text-[#1FAF55]" /> Meta Certified
             </span>
@@ -365,7 +365,7 @@ function GlassCardItem({ item, index }) {
 
 export default function WhatWeDo() {
   return (
-    <section id="what-we-do" className="what-we-do-section relative isolate overflow-hidden py-24 sm:py-28">
+    <section id="what-we-do" className="what-we-do-section relative isolate overflow-hidden py-12 sm:py-28">
       <div className="what-we-do-grid pointer-events-none absolute inset-0 -z-10 opacity-50 dark:opacity-25" />
       <div className="what-we-do-orb what-we-do-orb-one pointer-events-none absolute -left-32 top-24 -z-10 h-96 w-96 rounded-full bg-emerald-300/40 blur-[100px] dark:bg-emerald-500/15" />
       <div className="what-we-do-orb what-we-do-orb-two pointer-events-none absolute -right-32 bottom-12 -z-10 h-[28rem] w-[28rem] rounded-full bg-lime-200/50 blur-[110px] dark:bg-teal-400/10" />
@@ -389,13 +389,11 @@ export default function WhatWeDo() {
           <path d="M130 15v42M245 130h-42M130 245v-42M15 130h42" stroke="currentColor" strokeWidth="2" />
           <circle cx="130" cy="39" r="7" fill="currentColor" /><circle cx="221" cy="130" r="7" fill="currentColor" />
         </svg>
-        <div className="what-we-do-art-chip absolute right-[8%] top-[42%] hidden items-center gap-2 rounded-full border border-emerald-700/15 bg-white/60 px-3 py-2 text-[11px] font-semibold text-emerald-900/60 shadow-lg shadow-emerald-900/5 backdrop-blur-md dark:border-white/10 dark:bg-[#12271b]/60 dark:text-emerald-100/60 md:flex">
-          <span className="h-2 w-2 rounded-full bg-[#25D366]" /> Message delivered
-        </div>
+       
       </div>
       <div className="relative z-10 mx-auto max-w-6xl px-6">
       {/* Section Header */}
-      <div className="mb-16 max-w-2xl">
+      <div className="mx-auto mb-16 max-w-2xl text-center">
         <span className="text-xs font-bold uppercase tracking-widest text-[#1FAF55] dark:text-[#4ADE80]">
           Core Platform
         </span>

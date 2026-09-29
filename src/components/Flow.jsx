@@ -27,7 +27,7 @@ export default function Flow() {
   }, []);
 
   return (
-    <section id="flow" className="flow-section relative isolate overflow-hidden py-20 transition-colors sm:py-24">
+    <section id="flow" className="flow-section relative isolate overflow-hidden py-12 transition-colors sm:py-24">
       <div aria-hidden="true" className="flow-doodle absolute inset-0 -z-10" />
       <div aria-hidden="true" className="flow-glow flow-glow-one pointer-events-none absolute -left-40 top-8 -z-10 h-96 w-96 rounded-full bg-[#25D366]/15 blur-[110px]" />
       <div aria-hidden="true" className="flow-glow flow-glow-two pointer-events-none absolute -right-32 bottom-0 -z-10 h-[26rem] w-[26rem] rounded-full bg-violet-300/20 blur-[120px]" />
@@ -52,7 +52,7 @@ export default function Flow() {
               <circle r="27" fill="#25D366" opacity=".2" />
               <circle r="20" fill="#fff" />
               <CarFront x="-13" y="-13" width="26" height="26" color="#168344" />
-              <animateMotion dur="13.2s" repeatCount="indefinite" rotate="auto" keyTimes="0;0.1667;0.3333;0.5;0.6667;0.8333;1" keyPoints="0;0.2;0.4;0.6;0.8;1;1"><mpath href="#flow-route" /></animateMotion>
+              <animateMotion dur="15s" repeatCount="indefinite" rotate="auto" keyTimes="0;0.1333;0.2;0.3333;0.4;0.5333;0.6;0.7333;0.8;0.9333;1" keyPoints="0;0.2;0.2;0.4;0.4;0.6;0.6;0.8;0.8;1;1"><mpath href="#flow-route" /></animateMotion>
             </g>
           </svg>
 

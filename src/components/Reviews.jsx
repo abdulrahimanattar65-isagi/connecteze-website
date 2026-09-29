@@ -49,7 +49,7 @@ function ReviewCard({ review }) {
 
 export default function Reviews() {
   return (
-    <section id="reviews" className="reviews-section relative overflow-hidden bg-[#0A1610] py-20 text-white sm:py-24">
+    <section id="reviews" className="reviews-section relative overflow-hidden bg-[#0A1610] py-12 text-white sm:py-24">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="reviews-glow absolute -left-40 top-0 h-80 w-80 rounded-full bg-emerald-500/20 blur-[100px]" />
         <div className="reviews-glow reviews-glow-late absolute -right-36 bottom-0 h-96 w-96 rounded-full bg-teal-400/15 blur-[110px]" />
