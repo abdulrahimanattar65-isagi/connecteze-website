@@ -6,7 +6,7 @@ const FAQ_ITEMS = [
   {
     question: "How does the pricing work for WhatsApp conversations?",
     answer:
-      "Connecteze charges a flat platform subscription fee. WhatsApp conversation fees (marketing, utility, service) are determined by Meta's official country-based rate cards and deducted directly from your messaging balance without hidden markups.",
+      "Connecteze charges a flat platform subscription fee. WhatsApp conversation fees (marketing, utility, service) are determined by Meta's official country-based rate cards and deducted directly from your messaging balance without hidden markups. Note: Charges apply only to successfully delivered messages. No charges are incurred for messages that fail to deliver.",
   },
   {
     question: "Can I import existing contacts from Excel or CRM?",
@@ -16,7 +16,7 @@ const FAQ_ITEMS = [
 {
     question: "Can I use my existing WhatsApp phone number?",
     answer:
-      "Yes. You can migrate an existing phone number to the official WhatsApp Business API, provided you first delete or unlink the number from your standard WhatsApp or WhatsApp Business mobile app so Meta can register it on Cloud API.",
+      "No. To use the Connecteze platform, you need to purchase and register a dedicated business phone number. Existing personal WhatsApp numbers cannot be used for this platform please note that only one Account can be created per phone number ",
   },
   {
     question: "How fast do bulk WhatsApp messages get delivered?",
