@@ -122,8 +122,6 @@ const Bubble = ({ className }) => (
 function Backdrop() {
   return (
     <div className="services-bg" aria-hidden="true">
-      <span className="services-blob services-blob-1" />
-      <span className="services-blob services-blob-2" />
       <span className="services-dots services-dots-1" />
       <span className="services-dots services-dots-2" />
       <span className="services-ring services-ring-1" />
@@ -133,16 +131,6 @@ function Backdrop() {
       <Spark className="services-deco-spark-1" />
       <Spark className="services-deco-spark-2" />
       <Spark className="services-deco-spark-3" />
-      <svg className="services-deco services-deco-cake" viewBox="0 0 120 120">
-        <ellipse cx="60" cy="108" rx="50" ry="8" fill="#1faf5533" />
-        <rect className="ink" x="18" y="66" width="84" height="40" rx="9" fill="#ffffff" strokeWidth="2.5" />
-        <path d="M18 80q10.5 11 21 0t21 0 21 0 21 0" fill="none" stroke="#1faf55" strokeWidth="4" strokeLinecap="round" />
-        <rect className="ink" x="34" y="42" width="52" height="26" rx="8" fill="#d6efce" strokeWidth="2.5" />
-        <path d="M34 55q8.7 9 17.3 0t17.3 0 17.4 0" fill="none" stroke="#159447" strokeWidth="3.5" strokeLinecap="round" />
-        <rect className="ink" x="57" y="25" width="6" height="17" rx="2" fill="#ffda6a" strokeWidth="2" />
-        <path d="M60 11q7 7 0 13-7-6 0-13z" fill="#ff9f43" />
-        <circle cx="42" cy="94" r="3" fill="#794bdf" /><circle cx="60" cy="97" r="3" fill="#ff9f43" /><circle cx="78" cy="94" r="3" fill="#794bdf" />
-      </svg>
     </div>
   );
 }

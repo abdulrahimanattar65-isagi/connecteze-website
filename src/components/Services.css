@@ -1,4 +1,4 @@
-﻿.services-showcase.services-section { position: relative; overflow: hidden; padding: 96px 0; background: radial-gradient(ellipse at 75% 45%, #dcebd9, transparent 55%), radial-gradient(ellipse at 10% 10%, #eef6d9, transparent 45%), #f7f9f5; color: #10251b; }
+﻿.services-showcase.services-section { position: relative; overflow: hidden; padding: 96px 0; background: #fff; color: #10251b; }
 .services-showcase-inner { position: relative; z-index: 1; max-width: 1180px; margin: auto; padding: 0 32px; display: grid; grid-template-columns: minmax(0, 1fr) 400px; grid-template-areas: "head phone" "pills phone"; column-gap: 80px; row-gap: 30px; align-items: start; text-align: left; }
 .services-selection { grid-area: head; align-self: end; display: flex; flex-direction: column; align-items: flex-start; }
 .services-kicker { display: flex; align-items: center; gap: 9px; font-size: 11px; font-weight: 700; letter-spacing: .19em; color: #168344; }
@@ -9,7 +9,7 @@
 
 /* Phone */
 .services-preview-column { grid-area: phone; align-self: center; justify-self: end; position: relative; width: 100%; max-width: 400px; scroll-margin-top: 90px; }
-.services-chat-screen { overflow: hidden; border: 6px solid #10251b; border-radius: 36px; background: #e7f5eb; box-shadow: 0 25px 45px #10251b1a; text-align: left; }
+.services-chat-screen { color: #10251b; color-scheme: light; overflow: hidden; border: 6px solid #10251b; border-radius: 36px; background: #e7f5eb; box-shadow: 0 25px 45px #10251b1a; text-align: left; }
 .services-chat-header { display: flex; align-items: center; gap: 12px; padding: 18px; background: #1faf55; color: white; }
 .services-business-avatar, .services-chat-bell { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: #ffffff26; flex-shrink: 0; }
 .services-chat-header strong { display: flex; align-items: center; gap: 5px; font-size: 17px; }
@@ -72,9 +72,6 @@
 
 /* Background illustrations */
 .services-bg { position: absolute; inset: 0; pointer-events: none; z-index: 0; --bub-fill: #ffffff; --bub-biz: #d6efce; --bub-stroke: #b7dcc2; --ink: #10251b; }
-.services-blob { position: absolute; border-radius: 50%; filter: blur(2px); }
-.services-blob-1 { width: 420px; height: 420px; top: -140px; left: -120px; background: radial-gradient(circle at 35% 35%, #bfe8c9, #1faf5500 70%); opacity: .8; }
-.services-blob-2 { width: 520px; height: 520px; bottom: -200px; right: -140px; background: radial-gradient(circle at 60% 40%, #d7cdfb, #794bdf00 70%); opacity: .55; }
 .services-dots { position: absolute; width: 150px; height: 110px; background-image: radial-gradient(#1faf55 1.6px, transparent 1.8px); background-size: 18px 18px; opacity: .35; }
 .services-dots-1 { top: 70px; left: 4%; }
 .services-dots-2 { bottom: 60px; right: 6%; background-image: radial-gradient(#794bdf 1.6px, transparent 1.8px); }
@@ -87,8 +84,6 @@
 .services-deco-bubble circle { fill: #1faf55; }
 .services-deco-bubble-1 { width: 118px; top: 16%; left: 42%; animation: services-float 7s ease-in-out infinite; }
 .services-deco-bubble-2 { width: 96px; bottom: 14%; left: 46%; animation: services-float 8s ease-in-out -3s infinite; }
-.services-deco-cake { width: 130px; bottom: 36px; left: 3%; animation: services-float 9s ease-in-out -2s infinite; }
-.services-deco-cake .ink { stroke: var(--ink); }
 .services-deco-spark { fill: #1faf55; animation: services-twinkle 3.2s ease-in-out infinite; }
 .services-deco-spark-1 { width: 26px; top: 12%; right: 46%; }
 .services-deco-spark-2 { width: 18px; top: 52%; left: 3%; fill: #794bdf; animation-delay: -1s; }
@@ -97,33 +92,18 @@
 .services-chat-screen { box-shadow: 0 35px 70px #10251b2b, 0 0 0 10px #ffffff66; }
 
 /* Dark mode */
-.dark .services-showcase.services-section { background: radial-gradient(ellipse at 50% 40%, #173725, transparent 55%), #091710; color: #eaf6ee; }
+.dark .services-showcase.services-section { background: #091710; color: #eaf6ee; }
 .dark .services-heading > span, .dark .services-kicker { color: #58d487; }
 .dark .services-intro, .dark .services-count, .dark .services-count > span { color: #a7bfb2; }
 .dark .services-select-pill { background: #13271b; color: #eaf6ee; border-color: #2b4233; }
 .dark .services-select-pill > svg { color: #c6b4ff; }
 .dark .services-select-pill.is-active { background: linear-gradient(135deg, #1faf55, #168344); color: white; border-color: transparent; }
 .dark .services-select-pill.is-active > svg { color: white; }
-.dark .services-chat-screen { border-color: #324b3b; background: #152c20; }
-.dark .services-chat-status, .dark .services-message-customer, .dark .services-chat-result { background: #213c2c; border-color: #34523e; color: #eaf6ee; }
-.dark .services-chat-status { color: #c3dfcb; }
-.dark .services-chat-status > span { background: #2b4d36; color: #7ce7a1; }
-.dark .services-message-business, .dark .services-typing { background: #285037; color: #eaf6ee; }
-.dark .services-typing > span { background: #8fc9a3; }
-.dark .services-message-author { color: #83dfa3; }
-.dark .services-message small, .dark .services-chat-result p { color: #acc5b4; }
-.dark .services-result-icon { background: #342b4c; color: #ccb5ff; }
-.dark .services-result-action { background: #2b4734; color: #c3dfcb; }
-.dark .services-chat-date { background: #284332; color: #bfd4c5; }
-.dark .services-chat-progress > span { background: #43634e; }
-.dark .services-chat-progress > span.is-active { background: #58d487; }
+.dark .services-chat-screen { border-color: #0b1512; }
 .dark .services-preview-caption { color: #a7bfb2; }
 
 /* Dark background illustrations */
-.dark .services-showcase.services-section { background: radial-gradient(ellipse at 75% 45%, #173725, transparent 55%), radial-gradient(ellipse at 10% 10%, #1c3a22, transparent 45%), #091710; }
 .dark .services-bg { --bub-fill: #213c2c; --bub-biz: #285037; --bub-stroke: #3a5c45; --ink: #bfe8c9; }
-.dark .services-blob-1 { background: radial-gradient(circle at 35% 35%, #1f5a35, #1faf5500 70%); opacity: .7; }
-.dark .services-blob-2 { background: radial-gradient(circle at 60% 40%, #3a2c6e, #794bdf00 70%); opacity: .6; }
 .dark .services-chat-screen { box-shadow: 0 35px 70px #00000066, 0 0 0 10px #ffffff0d; }
 @keyframes services-float { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-14px) rotate(2deg); } }
 @keyframes services-twinkle { 0%, 100% { transform: scale(.7) rotate(0); opacity: .5; } 50% { transform: scale(1.15) rotate(25deg); opacity: 1; } }
@@ -134,7 +114,7 @@
 @media (max-width: 700px) {
   .services-showcase.services-section { padding: 52px 0; }
   .services-showcase-inner { padding: 0 16px; row-gap: 28px; }
-  .services-deco-cake, .services-deco-bubble-2, .services-ring-2, .services-dots-2 { display: none; }
+  .services-deco-bubble-2, .services-ring-2, .services-dots-2 { display: none; }
   .services-heading { font-size: 30px; }
   .services-chat-screen { border-radius: 30px; }
   .services-select-pill { padding: 9px 14px; font-size: 12px; }
