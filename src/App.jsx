@@ -7,7 +7,6 @@ import Templates from "./components/Templates";
 import Reviews from "./components/Reviews";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
-import LogoStrip from "./components/LogoStrip";
 import HowItWorks from "./components/HowItWorks";
 import CTA from "./components/CTA";
 import Services from "./components/Services";
@@ -19,7 +18,6 @@ export default function App() {
       <Navbar />
       <main className="relative overflow-hidden bg-[#F7F9F5] transition-colors dark:bg-[#091710]">
         <Hero />
-        <LogoStrip />
         <HowItWorks />
         <Flow />
         <WhatWeDo />
